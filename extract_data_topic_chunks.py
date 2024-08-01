@@ -3,6 +3,8 @@ import requests
 import json
 import logging
 import shutil
+import os
+from dotenv import load_dotenv
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -14,9 +16,11 @@ MAX_FILENAME_LENGTH = 255
 CHUNK_SIZE = 2000  # Define the chunk size
 OVERLAP_SIZE = 200  # Define the overlap size
 
-OPENAI_BASE_URL = "https://genv3.uwc.world/v1"
-DEFAULT_MODEL = "meta-llama/Meta-Llama-3.1-8B-Instruct"
-OPENAI_API_KEY = "EMPTY" 
+load_dotenv()
+
+OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL")
+DEFAULT_MODEL = os.getenv("DEFAULT_MODEL")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")  
 
 headers = {
     "Content-Type": "application/json",
